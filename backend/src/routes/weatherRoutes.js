@@ -1,9 +1,23 @@
 const express = require('express');
+const {getCities, getCityWeather} = require('../controllers/weatherController');
+const {expressjwt} = require('../middleware/jwtMiddleware');
+const jwkRsa = require('jwks-rsa');
+
 const router = express.Router();
-const weatherController = require('../controllers/weatherController');
 
-//endpoints
-router.get('/:cities', weatherController.getCities);
-router.get('/:cityId', weatherController.getWeatherByCityId);
+const jwtCheck = expressjwt({
+    secret: jwkRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    }),
+    audience: process.env.AUTH0_AUDIENCE,
+    issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+    algorithms: ['RS256']
+});
 
-module.exports = router;
+router.get('/cities', getCities);
+router.get('/weather/:city', jwtCheck, getCityWeather);
+
+module.exports = router;    
