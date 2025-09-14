@@ -1,27 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { environment } from '../environments/environment';
-import { AuthService } from '@auth0/auth0-angular';
-import { HttpClient } from '@angular/common/http';  
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { WeatherCardComponent } from '../components/weather-card.component/weather-card.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AuthService } from '@auth0/auth0-angular';
+import { environment } from '../environments/environment';
+import { WeatherListComponent } from './components/weather-list-component/weather-list-component';
+import { WeatherDetailComponent } from './components/weather-detail-component/weather-detail-component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule,FormsModule,WeatherCardComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule,        // Needed for <router-outlet> and routing
+    WeatherListComponent,
+    RouterOutlet
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App implements OnInit {
   protected title = 'Weather Application';
   isAuthenticated$: any;
   user$: any;
-  cities:number[]=[];
-  selectedCityId:string='';
+  cities:number[] = [];
+  selectedCityId:string = '';
   weatherData:any;
-  loading:boolean=false;
-  backendUrl=environment.backendUrl;
+  loading:boolean = false;
+  backendUrl = environment.backendUrl;
 
   constructor(public auth: AuthService, private http: HttpClient) {
     this.isAuthenticated$ = this.auth.isAuthenticated$;
@@ -33,13 +42,9 @@ export class App implements OnInit {
   }
 
   fetchCities(): void {
-    this.http.get<number[]>(`${this.backendUrl}/cities`).subscribe(
-      (data) => {
-        this.cities = data;
-      },
-      (error) => {
-        console.error('Error fetching cities:', error);
-      }
+    this.http.get<number[]>(`${this.backendUrl}/api/cities`).subscribe(
+      (data) => { this.cities = data; },
+      (error) => { console.error('Error fetching cities:', error); }
     );
   }
 
@@ -52,13 +57,13 @@ export class App implements OnInit {
   }
 
   async loadWeatherData() {
-    if (!this.selectedCityId)  return;
+    if (!this.selectedCityId) return;
     this.loading = true;
 
-    try{
-      const token= await this.auth.getAccessTokenSilently();
-      const headers={Authorization:`Bearer ${token}`};
-      const response: any = await this.http.get(`${this.backendUrl}/weather/${this.selectedCityId}`,{headers}).toPromise();
+    try {
+      const token = await this.auth.getAccessTokenSilently();
+      const headers = { Authorization: `Bearer ${token}` };
+      const response: any = await this.http.get(`${this.backendUrl}/weather/${this.selectedCityId}`, { headers }).toPromise();
       this.weatherData = response;
     } catch (error) {
       console.error('Error loading weather data:', error);
@@ -67,4 +72,3 @@ export class App implements OnInit {
     }
   }
 }
-

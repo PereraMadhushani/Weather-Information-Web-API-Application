@@ -1,0 +1,159 @@
+/* Overall Container */
+.weather-container {
+  /* This now controls the width of each card */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 2fr));
+  background-color: #3f4c6b;
+  display: grid; /* Make sure this is present */
+  justify-content: center; /* Center the grid items if there's only one */
+}
+
+.weather-card {
+  position: relative;
+  width: auto; /* Allow the card to be sized by the grid */
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  margin-left: 0; /* Remove the hard-coded margin */
+}
+
+/* Top Section (Blue) */
+.top-section {
+  background-color: #2e86de;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cloud Backgrounds */
+.top-section::before,
+.top-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  opacity: 0.2;
+}
+.top-section::before {
+  top: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg ...>');
+}
+.top-section::after {
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg ...>');
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* City and Date */
+.city-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+.city-details h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.city-details .date {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Status Icon and Text */
+.status-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+.status-icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+.status-icon p {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* Temperature Section */
+.temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+.temperature .temp {
+  font-size: 36px;
+  font-weight: bold;
+}
+.temperature .temp-minmax {
+  font-size: 12px;
+  opacity: 0.9;
+  text-align: right;
+}
+.temperature .temp-minmax p {
+  margin: 0;
+}
+
+/* Bottom Section (Dark Gray) */
+.bottom-section {
+  background-color: #2d3436;
+  color: #ccc;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-group {
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+  flex: 1;
+}
+
+.centered-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-detail i {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+/* Hover Effect */
+.weather-card:hover {
+  transform: translateY(-5px);
+}

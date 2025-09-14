@@ -1,0 +1,9 @@
+<div *ngIf="weather" class="p-6 rounded-xl text-white bg-blue-500">
+    <h2>{{ weather.name }}</h2>
+    <p>{{ weather.description }}</p>
+    <p>Min: {{ weather.temp_min }}°C | Max: {{ weather.temp_max }}°C</p>
+    <p>Pressure: {{ weather.pressure }} hPa</p>
+    <p>Humidity: {{ weather.humidity }}%</p>
+    <p>Sunrise: {{ weather.sunrise }}</p>
+    <p>Sunset: {{ weather.sunset }}</p>
+</div>

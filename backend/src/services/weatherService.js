@@ -1,46 +1,69 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
-const cache = require('../utils/cache');
+require('dotenv').config(); // Load environment variables from .env
 
-const API_KEY = process.env.OPENWEATHER_KEY;
+// Get the API key from environment variables
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
-// const cache = new NodeCache({ stdTTL: 300 }); // Cache for 5 minutes
-// const cities = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/cities.json'), 'utf-8'));
+// Base URL for the OpenWeatherMap API
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
-function getCityIds(){
-    return cities.map(city => city.CityCode ||city.CityName||city.Temp||city.Status).filter(Boolean);
-}
+/**
+ * Fetches detailed weather data for a given city ID.
+ * @param {string} cityId The unique ID of the city.
+ * @returns {Promise<Object>} A promise that resolves to the weather data.
+ */
+const fetchWeather = async (cityId) => {
+  // Check if the API key is available
+  if (!OPENWEATHER_API_KEY) {
+    throw new Error('API key is not defined. Please set the OPENWEATHER_API_KEY environment variable.');
+  }
 
-async function fetchWeatherFromAPI(cityId) {
-    const key =process.env.OPENWEATHER_KEY;
-    const url =`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`;
-    const response = await axios.get(url);
-    return response.data;
-}
+  try {
+    const response = await axios.get(BASE_URL, {
+      params: {
+        id: cityId,
+        appid: OPENWEATHER_API_KEY,
+        units: 'metric',
+      },
+    });
 
-async function getWeather(cityId) {
-    const cachedKey = `weather:${cityId}`;
-    const cachedData = cache.get(cachedKey);
-    if (cachedData) {
-        return { source: 'cache', data: cachedData };
-
-        const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${API_KEY}&units=metric`;
-        const response = await axios.get(url);
-        const body = response.data;
-        const out ={
-            id: body.id,
-            name: body.name,
-            temp: body.main.temp,
-            description: body.weather[0].description
-        };
-
-        cache.set(cachedKey, out, 300); // Cache for 5 minutes
-        return { source: 'api', data: out };
+    // Extract the relevant data from the API response
+    const data = response.data;
+    console.log('API response data:', data); // Log the entire response data for debugging
+    return {
+      id: data.id,
+      name: data.name,
+      country: data.sys.country,
+      description: data.weather[0].description,
+      temp: data.main.temp,
+      temp_min: data.main.temp_min,
+      temp_max: data.main.temp_max,
+      pressure: data.main.pressure,
+      humidity: data.main.humidity,
+      wind_speed: data.wind.speed,
+      wind_deg: data.wind.deg,
+      visibility: data.visibility,
+      sunrise: data.sys.sunrise,
+      sunset: data.sys.sunset,
+      icon: data.weather[0].icon,
+      timezone: data.timezone,
+      dt: data.dt,
+    };
+  } catch (error) {
+    // Log a detailed error message, including the response data if available
+    if (error.response) {
+      console.error('API Error:', error.response.data);
+      throw new Error(`API call failed with status ${error.response.status}: ${JSON.stringify(error.response.data)}`);
+    } else if (error.request) {
+      console.error('Network Error:', error.request);
+      throw new Error('No response received from the API. Check your network connection.');
+    } else {
+      console.error('Request Setup Error:', error.message);
+      throw new Error('Error setting up the API request.');
     }
-}
+  }
+};
 
 module.exports = {
-    getCityIds,
-    getWeather
+  fetchWeather,
 };
