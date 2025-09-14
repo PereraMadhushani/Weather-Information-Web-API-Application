@@ -29,6 +29,7 @@ const fetchWeather = async (cityId) => {
 
     // Extract the relevant data from the API response
     const data = response.data;
+    console.log('API response data:', data); // Log the entire response data for debugging
     return {
       id: data.id,
       name: data.name,
@@ -44,6 +45,9 @@ const fetchWeather = async (cityId) => {
       visibility: data.visibility,
       sunrise: data.sys.sunrise,
       sunset: data.sys.sunset,
+      icon: data.weather[0].icon,
+      timezone: data.timezone,
+      dt: data.dt,
     };
   } catch (error) {
     // Log a detailed error message, including the response data if available

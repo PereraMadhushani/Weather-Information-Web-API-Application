@@ -1,44 +1,42 @@
-<div class="weather-card">
-
+<div class="weather-container">
+  <div class="weather-card" [ngClass]="weather.Status.toLowerCase()" (click)="goToDetailsPage(weather.CityName)">
     <div class="top-section">
+      <button class="close-btn" (click)="$event.stopPropagation()">&times;</button>
+      <div class="city-details">
+        <h3>{{ weather.CityName }}, {{weather.CountryCode}}</h3>
+        <p class="date">{{ getTimeAndDate(weather.Dt, weather.Timezone)}}</p>
+      </div>
 
-<button class="close-btn">&times;</button>
-<div class="city-details">
-    <h3>{{ weather.CityName }}, {{weather.CityCode}}</h3>
-    <p class="date">{{ weather.Date | date: 'fullDate' }}</p>
-</div>
-
-<div class="main-weather">
-    <div class="status-icon">
-        <img alt="{{ weather.Status }}">
+      <div class="status-icon">
+        <img [src]="'http://openweathermap.org/img/wn/' + weather.Icon + '@2x.png'" alt="{{ weather.Status }}" />
         <p>{{ weather.Status }}</p>
-    </div>
-    <div class="temperature">
+      </div>
+
+      <div class="temperature">
         <span class="temp">{{ weather.Temp }}&#8451;</span>
         <div class="temp-minmax">
-            <p>Min: {{ weather.MinTemp }}&#8451;</p>
-            <p>Max: {{ weather.MaxTemp }}&#8451;</p>
+          <p>Temp Min: {{ weather.TempMin }}&#8451;</p>
+          <p>Temp Max: {{ weather.TempMax }}&#8451;</p>
         </div>
+      </div>
     </div>
-</div>
-</div>
 
-<div class="bottom-section">
-    <div class="detail-group">
+    <div class="bottom-section">
+      <div class="detail-group">
         <p>Pressure: {{ weather.Pressure }} hPa</p>
         <p>Humidity: {{ weather.Humidity }}%</p>
-        <p>Visibility: {{ weather.Visibility }} km </p>
-    </div>
+        <p>Visibility: {{ weather.Visibility }} km</p>
+      </div>
 
-
-    <div class="detail-group centered-detail">
-        <img src="assets/wind.png" alt="Wind Icon" class="wind-icon">
+      <div class="detail-group centered-detail">
+        <i class="bi bi-wind"></i>
         <p>{{ weather.WindSpeed }} m/s {{ weather.WindDirection }} Degree</p>
-    </div>
+      </div>
 
-
-    <div class="detail-group">
-        <p>Cloudiness: {{ weather.Cloudiness }}%</p>
+      <div class="detail-group">
         <p>Sunrise: {{ weather.Sunrise | date: 'shortTime' }}</p>
         <p>Sunset: {{ weather.Sunset | date: 'shortTime' }}</p>
+      </div>
+    </div>
+  </div>
 </div>

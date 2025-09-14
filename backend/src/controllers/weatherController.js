@@ -55,7 +55,10 @@ const getAllCitiesWeatherDetails = async (req, res) => {
         Sunrise: detailed.sunrise,
         Sunset: detailed.sunset,
         // Assuming your API response has a 'description' field
-        Status: detailed.description, 
+        Status: detailed.description,
+        Icon: detailed.icon?? null, // Assuming your API response has an 'icon' field 
+        Timezone: detailed.timezone,
+        Dt: detailed.dt
       };
     });
 

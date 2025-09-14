@@ -7,4 +7,71 @@ select { padding:6px; }
 @media (max-width: 600px) {
   .controls { flex-direction: column; align-items: stretch; }
 }
-.card { border-radius:10px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); padding:16px; margin-top: 12px; }
+// .card { border-radius:10px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); padding:16px; margin-top: 12px; }
+.weather-app {
+ background-image: url('../assets/weather-bg.png');
+   background-size: cover;   /* make it cover the full container */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat; /* prevent tiling */
+  min-height: 100vh;  /* make sure it fills the screen */
+  display: flex;
+  flex-direction: column;
+}
+/* Container for the entire header */
+.header-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Pushes the logo and search section to opposite ends */
+    align-items: center; /* Vertically aligns items */
+    margin-right: 500px;
+}
+
+/* Style for the app logo and title */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 1400px;
+}
+
+.logo img {
+    height: 40px; /* Adjust as needed */
+    width: 40px;
+}
+
+/* Style for the search input and button */
+.search-section {
+    display: flex;
+    align-items: center;
+    margin-left: 1350px;    
+}
+
+.search-input{
+  width: 300px;
+}
+
+input[type="text"] {
+    background-color: #404066;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none; /* Removes the outline on focus */
+}
+
+button {
+    background-color: #6a5acd;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Adds space between input and button */
+    font-size: 16px;
+}

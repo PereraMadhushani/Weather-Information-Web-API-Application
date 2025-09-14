@@ -20,8 +20,10 @@ weatherList: any;
   ngOnInit(): void {
     this.cityList = List.List;
     this.weatherService.getAllCitiesWeather().subscribe(data => {
+      debugger
+      
       console.log("city weather data",data);
-      this.weathers = data.cities.List;
+      this.weathers = data.cities;
     });
   }
   

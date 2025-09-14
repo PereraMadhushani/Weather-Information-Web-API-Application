@@ -4,5 +4,4 @@ import { WeatherDetailComponent } from './components/weather-detail-component/we
 
 export const routes: Routes = [
     {path:'', component:WeatherListComponent},
-    {path:'city/:id', component:WeatherDetailComponent}
-];
+{ path: 'weather/:cityName', component: WeatherDetailComponent }];
