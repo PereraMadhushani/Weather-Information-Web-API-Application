@@ -1,0 +1,7 @@
+<div class="p-4 rounded-xl text-white cursor-pointer"
+        [ngStyle] ="{'background-color': getColor()}"
+        (click) ="viewDetails(weather.id)">
+    <h2>{{ weather.name}}</h2>
+    <h1 class="text-4xl">{{ weather.temp }}°C</h1>
+    <p>{{ weather.description }}</p>
+</div>  

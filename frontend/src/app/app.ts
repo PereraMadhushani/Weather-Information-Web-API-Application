@@ -5,11 +5,10 @@ import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { WeatherCardComponent } from '../components/weather-card.component/weather-card.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule,FormsModule,WeatherCardComponent],
+  imports: [CommonModule,FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
