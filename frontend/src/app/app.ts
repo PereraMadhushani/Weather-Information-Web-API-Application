@@ -6,10 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WeatherDetailComponent } from "./components/weather-detail-component/weather-detail-component";
+import { WeatherListComponent } from './components/weather-list-component/weather-list-component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, WeatherDetailComponent],
+  imports: [CommonModule, FormsModule,WeatherListComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

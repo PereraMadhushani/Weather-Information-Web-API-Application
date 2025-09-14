@@ -19,10 +19,9 @@ weatherList: any;
   constructor(private weatherService: WeatherService) { }
   ngOnInit(): void {
     this.cityList = List.List;
-    this.cityList.forEach(city => {
-      this.weatherService.getWeatherData(city.id).subscribe(data => {
-        this.weathers.push(data);
-      });
+    this.weatherService.getAllCitiesWeather().subscribe(data => {
+      console.log("city weather data",data);
+      this.weathers = data.cities.List;
     });
   }
   

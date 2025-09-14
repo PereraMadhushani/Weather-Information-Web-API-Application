@@ -1,0 +1,91 @@
+.weather-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: sans-serif; // Use a clean font
+
+  .top-section {
+    background: #4682B4; // A light blue color
+    padding: 20px;
+    position: relative;
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .city-details {
+      h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0;
+      }
+      .date {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+    }
+
+    .main-weather {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+
+      .status-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+        p {
+          margin: 5px 0 0 0;
+          font-size: 0.9rem;
+        }
+      }
+
+      .temperature {
+        text-align: right;
+        .temp {
+          font-size: 3rem;
+          font-weight: 300;
+        }
+        .temp-minmax p {
+          font-size: 0.8rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .bottom-section {
+    background: #2a3045; // Dark gray color
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .detail-group p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    .centered-detail {
+      text-align: center;
+      img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

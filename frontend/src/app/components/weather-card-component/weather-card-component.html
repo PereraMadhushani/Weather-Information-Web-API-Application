@@ -1,7 +1,44 @@
-<div class="p-4 rounded-xl text-white cursor-pointer"
-        [ngStyle] ="{'background-color': getColor()}"
-        (click) ="viewDetails(weather.id)">
-    <h2>{{ weather.name}}</h2>
-    <h1 class="text-4xl">{{ weather.temp }}°C</h1>
-    <p>{{ weather.description }}</p>
-</div>  
+<div class="weather-card">
+
+    <div class="top-section">
+
+<button class="close-btn">&times;</button>
+<div class="city-details">
+    <h3>{{ weather.CityName }}, {{weather.CityCode}}</h3>
+    <p class="date">{{ weather.Date | date: 'fullDate' }}</p>
+</div>
+
+<div class="main-weather">
+    <div class="status-icon">
+        <img alt="{{ weather.Status }}">
+        <p>{{ weather.Status }}</p>
+    </div>
+    <div class="temperature">
+        <span class="temp">{{ weather.Temp }}&#8451;</span>
+        <div class="temp-minmax">
+            <p>Min: {{ weather.MinTemp }}&#8451;</p>
+            <p>Max: {{ weather.MaxTemp }}&#8451;</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="bottom-section">
+    <div class="detail-group">
+        <p>Pressure: {{ weather.Pressure }} hPa</p>
+        <p>Humidity: {{ weather.Humidity }}%</p>
+        <p>Visibility: {{ weather.Visibility }} km </p>
+    </div>
+
+
+    <div class="detail-group centered-detail">
+        <img src="assets/wind.png" alt="Wind Icon" class="wind-icon">
+        <p>{{ weather.WindSpeed }} m/s {{ weather.WindDirection }} Degree</p>
+    </div>
+
+
+    <div class="detail-group">
+        <p>Cloudiness: {{ weather.Cloudiness }}%</p>
+        <p>Sunrise: {{ weather.Sunrise | date: 'shortTime' }}</p>
+        <p>Sunset: {{ weather.Sunset | date: 'shortTime' }}</p>
+</div>
