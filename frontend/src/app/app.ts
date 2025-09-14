@@ -5,10 +5,11 @@ import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { WeatherDetailComponent } from "./components/weather-detail-component/weather-detail-component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, WeatherDetailComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -32,7 +33,7 @@ export class App implements OnInit {
   }
 
   fetchCities(): void {
-    this.http.get<number[]>(`${this.backendUrl}/cities`).subscribe(
+    this.http.get<number[]>(`${this.backendUrl}/api/cities`).subscribe(
       (data) => {
         this.cities = data;
       },
