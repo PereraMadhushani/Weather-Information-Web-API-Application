@@ -6,45 +6,34 @@ const citiesPath = path.join(__dirname, '../data/cities.json');
 let cities = [];
 
 try {
-  // Read the cities.json file synchronously
   const data = fs.readFileSync(citiesPath, 'utf-8');
-  // Parse the JSON data and assign the 'List' property to the cities array
   const parsedData = JSON.parse(data);
   cities = parsedData.List;
-  // Log the number of cities loaded to confirm it's working
+
   console.log(`Successfully loaded ${cities.length} cities from cities.json.`);
+
 } catch(error) {
-  // If the file can't be read or parsed, log a clear error message
   console.error('Error reading cities data. Please ensure cities.json exists and is valid:', error.message);
 }
 
-// Controller function to get all cities with full weather details
 const getAllCitiesWeatherDetails = async (req, res) => {
   try {
-    // CRITICAL FIX: Check if the cities array is empty.
-    // If the data failed to load from the file, return an error.
     if (cities.length === 0) {
       return res.status(500).json({ error: 'City data is not available. Please check the cities.json file.' });
     }
 
     // Create an array of promises for each API call
     const weatherPromises = cities.map(city => 
-      // Call the service function to fetch detailed weather for each city code
       fetchWeather(city.CityCode)
     );
 
-    // Wait for all API calls to complete
     const detailedWeatherData = await Promise.all(weatherPromises);
-
-    // Combine the basic and detailed data
     const combinedData = cities.map((city, index) => {
-      // Get the detailed data for the current city
-      const detailed = detailedWeatherData[index];
+    const detailed = detailedWeatherData[index];
       
-      // Return a new object that merges both sets of data
       return {
-        ...city, // Spread operator to include basic data
-        CountryCode: detailed.country, // Add country code from API
+        ...city, 
+        CountryCode: detailed.country,
         TempMin: detailed.temp_min,
         TempMax: detailed.temp_max,
         Pressure: detailed.pressure,
@@ -53,7 +42,8 @@ const getAllCitiesWeatherDetails = async (req, res) => {
         WindDirection: detailed.wind_deg,
         Visibility: detailed.visibility,
         Sunrise: detailed.sunrise,
-        Sunset: detailed.sunset,        Status: detailed.description,
+        Sunset: detailed.sunset,       
+        Status: detailed.description,
         Icon: detailed.icon?? null, // Assuming your API response has an 'icon' field 
         Timezone: detailed.timezone,
         Dt: detailed.dt,

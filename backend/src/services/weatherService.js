@@ -1,10 +1,7 @@
 const axios = require('axios');
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config();
 
-// Get the API key from environment variables
 const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
-
-// Base URL for the OpenWeatherMap API
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 /**
@@ -13,7 +10,6 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
  * @returns {Promise<Object>} A promise that resolves to the weather data.
  */
 const fetchWeather = async (cityCode) => {
-  // Check if the API key is available
   if (!OPENWEATHER_API_KEY) {
     throw new Error('API key is not defined. Please set the OPENWEATHER_API_KEY environment variable.');
   }
@@ -29,7 +25,7 @@ const fetchWeather = async (cityCode) => {
 
     // Extract the relevant data from the API response
     const data = response.data;
-    console.log('API response data:', data); // Log the entire response data for debugging
+    console.log('API response data:', data); 
     return {
       id: data.id,
       name: data.name,

@@ -1,33 +1,4 @@
-<div class="weather-app">
-<div class="header-container">
-  <div class="logo-section">
-    <img src="assets/logo1.png" alt="Weather Logo" class="logo-image">
-    <h1 class="logo-title">Weather App</h1>
-
-    <div class="auth">
-      <ng-container *ngIf="(isAuthenticated$ | async); else showLogin">
-        <button (click)="logOut()">Logout</button>
-      </ng-container>
-      <ng-template #showLogin>
-        <button (click)="login()">Login</button>
-      </ng-template>
-    </div>
-  </div>
-</div>
-
-
-  <div class="search-section">
-    <input class="search-input" type="text" placeholder="Enter a city">
-    <button>Add City</button>
-  </div>
-
-
 <router-outlet></router-outlet>
-</div>
 
-
-<footer>
-  <p>&copy; 2021 Fidenz Technologies</p>
-</footer>
 
 

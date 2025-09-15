@@ -22,8 +22,7 @@ export class WeatherListComponent implements OnInit {
     private weatherService: WeatherService,
     private auth: AuthService
   ) {
-        this.isAuthenticated$ = this.auth.isAuthenticated$;
-
+    this.isAuthenticated$ = this.auth.isAuthenticated$;
   }
   ngOnInit(): void {
     this.cityList = List.List;
@@ -35,7 +34,7 @@ export class WeatherListComponent implements OnInit {
       localStorage.setItem('token', token);
     });
   }
-  
+
   login() {
     this.auth.loginWithRedirect();
   }
@@ -43,5 +42,4 @@ export class WeatherListComponent implements OnInit {
   logOut() {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
-
 }
