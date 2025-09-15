@@ -8,7 +8,7 @@ import { Observable, of, tap } from 'rxjs';
 export class WeatherService {
 private cache = new Map<number, { data: any, expiry: number }>();
 
-  private apiUrl = 'http://localhost:5000/api'; // Replace with your backend API URL
+  private apiUrl = 'http://localhost:5000/api'; 
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { AuthService } from '@auth0/auth0-angular';
   imports: [CommonModule],
   standalone: true,
   templateUrl: './weather-card-component.html',
-  styleUrl: './weather-card-component.scss',
+  styleUrls: ['./weather-card-component.scss'],
 })
 export class WeatherCardComponent {
   @Input() weatherList!: {
