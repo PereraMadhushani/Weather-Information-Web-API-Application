@@ -1,0 +1,188 @@
+/* --- Variables --- */
+$font-stack: 'Poppins', sans-serif;
+$background-dark: #1f2128;
+$card-dark: #2c2f37;
+$card-blue: #3d68b9;
+$text-light: #f0f0f0;
+$text-subtle: #a0a0a0;
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* --- App Header --- */
+.app-header {
+    margin-bottom: 20px;
+    .app-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        .app-icon {
+            font-size: 1.8rem;
+            vertical-align: middle;
+        }
+    }
+}
+
+/* --- Weather Cards Container --- */
+.weather-card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- Main Weather Card (Blue) --- */
+.weather-card {
+    background-color: $card-blue;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.weather-card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .back-arrow {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .location-info {
+        text-align: left;
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 600;
+        }
+        .date-time {
+            font-size: 0.9rem;
+            color: $text-subtle;
+        }
+    }
+}
+
+.weather-card-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .weather-main-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        .weather-icon-main {
+            font-size: 3rem;
+        }
+        .weather-description {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+    .weather-main-right {
+        display: flex;
+        align-items: flex-end;
+        gap: 15px;
+        .temperature {
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+        .temp-range {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            font-size: 0.9rem;
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+/* --- Details Card (Dark) --- */
+.weather-details-card {
+    background-color: $card-dark;
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p {
+        margin: 0;
+        line-height: 1.2;
+    }
+    .label {
+        font-size: 0.9rem;
+        color: $text-subtle;
+    }
+    .value {
+        font-weight: 500;
+    }
+}
+
+.detail-item-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    .wind-icon {
+        font-size: 2.5rem;
+    }
+    .wind-info {
+        font-size: 0.9rem;
+    }
+}
+
+/* --- Footer --- */
+.app-footer {
+    margin-top: 20px;
+    p {
+        font-size: 0.8rem;
+        color: $text-subtle;
+    }
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 10px;
+    }
+    .weather-card {
+        padding: 20px;
+    }
+    .weather-details-card {
+        flex-direction: column;
+        text-align: center;
+        .detail-item {
+            text-align: center;
+            .label { display: inline-block; }
+            .value { display: inline-block; }
+        }
+    }
+    .weather-card-main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .weather-main-left {
+        order: 1;
+    }
+    .weather-main-right {
+        order: 2;
+    }
+}

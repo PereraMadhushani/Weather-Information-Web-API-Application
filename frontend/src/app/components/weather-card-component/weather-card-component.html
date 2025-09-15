@@ -1,4 +1,4 @@
-<div class="weather-card">
+<div class="weather-card" (click)="goToWeatherDetail(weather.CityCode)">
   <button class="close-btn" (click)="$event.stopPropagation()">&times;</button>
 
   <div class="top-section">

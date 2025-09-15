@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { WeatherListComponent } from './components/weather-list-component/weather-list-component';
-import { WeatherDetailComponent } from './components/weather-detail-component/weather-detail-component';
+import { WeatherDetailComponent } from './components/weather-detail.component/weather-detail.component';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +17,6 @@ import { WeatherDetailComponent } from './components/weather-detail-component/we
     HttpClientModule,
     RouterModule,        // Needed for <router-outlet> and routing
     WeatherListComponent,
-    RouterOutlet,
-    WeatherDetailComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
