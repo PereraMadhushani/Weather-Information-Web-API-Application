@@ -24,33 +24,38 @@
 
 </div> -->
 <div class="weather-app">
-  
-  <div class class="header-container">
-    <div class="logo">
-        <img src="assets/weather.png" alt="Weather Icon">
-        <h1 class="logo-title">Weather App</h1>
-         <!-- This is where you "render" the template -->
-<div class="auth">
-    <ng-container *ngIf="(isAuthenticated$ | async); else showLogin">
-      <button (click)="logOut()">Logout</button>
-    </ng-container>
-    <ng-template #showLogin>
-      <button (click)="login()">Login</button>
-    </ng-template>
-  </div>
-    </div>
-  </div>
-    <div class="search-section">
-        <input class="search-input" type="text" placeholder="Enter a city">
-        <button>Add City</button>
-    </div>
+<div class="header-container">
+  <div class="logo-section">
+    <img src="assets/logo1.png" alt="Weather Logo" class="logo-image">
+    <h1 class="logo-title">Weather App</h1>
 
-<div class="cards-container ">
-  <app-weather-list-component></app-weather-list-component>
+    <div class="auth">
+      <ng-container *ngIf="(isAuthenticated$ | async); else showLogin">
+        <button (click)="logOut()">Logout</button>
+      </ng-container>
+      <ng-template #showLogin>
+        <button (click)="login()">Login</button>
+      </ng-template>
+    </div>
+  </div>
 </div>
+
+
+  <div class="search-section">
+    <input class="search-input" type="text" placeholder="Enter a city">
+    <button>Add City</button>
+  </div>
+
+  <div class="cards-container">
+    <app-weather-list-component></app-weather-list-component>
+  </div>
+
 </div>
+
 <router-outlet></router-outlet>
+
 <footer>
   <p>&copy; 2025 Weather App</p>
 </footer>
+
 
