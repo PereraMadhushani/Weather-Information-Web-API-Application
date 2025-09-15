@@ -1,4 +1,4 @@
-<div class="weather-card" (click)="goToWeatherDetail(weather.CityCode)">
+<div class="weather-card" (click)="goToWeatherDetail(weather.CityCode)" [ngClass]="getColor()">
   <button class="close-btn" (click)="$event.stopPropagation()">&times;</button>
 
   <div class="top-section">
@@ -32,14 +32,19 @@
       <p>Humidity: {{ weather.Humidity }}%</p>
       <p>Visibility: {{ weather.Visibility }} km</p>
     </div>
-    <br/>
+
+    <div class="vertical-line"></div>
+
     <div class="detail-group centered-detail">
       <i class="fa-solid fa-compass"></i>
       <p>{{ weather.WindSpeed }} m/s {{ weather.WindDeg }} Degree</p>
     </div>
+
+    <div class="vertical-line"></div>
+    
     <div class="detail-group">
-      <p>Sunrise: {{ weather.Sunrise }}</p>
-      <p>Sunset: {{ weather.Sunset }}</p>
+      <p>Sunrise: {{ (weather.Sunrise * 1000) | date:'hh:mm a':'UTC' }}</p>
+      <p>Sunset: {{ (weather.Sunset * 1000) | date:'hh:mm a':'UTC' }}</p>
     </div>
   </div>
 </div>

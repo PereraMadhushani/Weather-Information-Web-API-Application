@@ -1,13 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-weather-detail.component',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './weather-detail.component.html',
-  styleUrl: './weather-detail.component.scss'
+  styleUrl: './weather-detail.component.scss',
+   providers: [DatePipe]
 })
 export class WeatherDetailComponent implements OnInit {
   cityCode!: number;
@@ -20,8 +22,7 @@ export class WeatherDetailComponent implements OnInit {
   ngOnInit(): void {
  this.route.params.subscribe(params => {
   console.log("WeatherDetailComponent initialized", params);
-  debugger                                    
-      this.cityCode = Number(params['cityCode']); // must match the route param
+      this.cityCode = Number(params['cityCode']);
       this.fetchWeatherDetails(this.cityCode);
     }); 
    }
@@ -51,6 +52,8 @@ export class WeatherDetailComponent implements OnInit {
 
     return `${hours}:${minutes} ${ampm}, ${month} ${day}`;
   }
+
+  
 
   goBack() {
     this.router.navigate(['/']); // navigate back to weather list

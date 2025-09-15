@@ -21,7 +21,9 @@
           />
           <p class="weather-description">{{ weather.description }}</p>
         </div>
+
         <div class="vertical-line"></div>
+
         <div class="weather-main-right">
           <span class="temp">{{ weather.temp }}&#8451;</span>
           <div class="temp-range">
@@ -34,33 +36,32 @@
 
     <div class="weather-details-card">
       <div class="detail-item">
-        <p class="label">Pressure:</p>
-        <p class="value">{{ weather.pressure }} hPa</p>
-        <p class="label">Humidity:</p>
-        <p class="value">{{ weather.humidity }}%</p>
-        <p class="label">Visibility:</p>
-        <p class="value">{{ weather.visibility }} km</p>
+        <p class="label">Pressure:{{ weather.pressure }} hPa</p>
+        <p class="label">Humidity:{{ weather.humidity }}%</p>
+        <p class="label">Visibility:{{ weather.visibility }} km</p>
       </div>
+      <div class="vertical-line-2"></div>
+      
       <div class="detail-item-middle">
         <span class="wind-icon">&#9992;</span>
         <p class="wind-info">
           {{ weather.wind_speed }} m/s {{ weather.wind_direction }} Degree
         </p>
       </div>
+
+      <div class="vertical-line-2"></div>
+      
       <div class="detail-item">
-        <p class="label">Sunrise:</p>
-        <p class="value">
-          {{ getTimeAndDate(weather.sunrise, weather.timezone) }}
-        </p>
-        <p class="label">Sunset:</p>
-        <p class="value">
-          {{ getTimeAndDate(weather.sunset, weather.timezone) }}
-        </p>
+        <p class="label">Sunrise:{{ (weather.sunrise * 1000) | date:'hh:mm a':'UTC' }}</p>
+
+        <p class="label">Sunset:{{ (weather.sunset * 1000) | date:'hh:mm a':'UTC' }}</p>
+        
       </div>
     </div>
   </main>
 
-  <footer class="app-footer">
-    <p>2021 Fidenz Technologies</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 Fidenz Technologies. All rights reserved.</p>
+</footer>
+
 </div>

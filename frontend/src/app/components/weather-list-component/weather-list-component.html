@@ -1,5 +1,35 @@
+<div class="weather-app">
+  <div class="header-container">
+    <div class="logo">
+ <i class="bi bi-cloud-sun"></i>
+       <h1 class="logo-title">Weather App</h1>
 
-<div class="weather-cards-container">
-  <app-weather-card-component *ngFor="let weather of weathers" [weather]="weather">
-  </app-weather-card-component>
+      <div class="auth">
+        <ng-container *ngIf="(isAuthenticated$ | async); else showLogin">
+          <button (click)="logOut()">Logout</button>
+        </ng-container>
+        <ng-template #showLogin>
+          <button (click)="login()">Login</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-section">
+    <input class="search-input" type="text" placeholder="Enter a city" />
+    <button>Add City</button>
+  </div>
+
+  <div class="weather-cards-container">
+    <app-weather-card-component
+      *ngFor="let weather of weathers"
+      [weather]="weather"
+    >
+    </app-weather-card-component>
+  </div>
 </div>
+
+<footer>
+  <p>&copy; 2025 Fidenz Technologies. All rights reserved.</p>
+</footer>
+
