@@ -1,0 +1,231 @@
+/* --- Variables --- */
+$font-stack: "Poppins", sans-serif;
+$background-dark: #1f2128;
+$card-dark: #2c2f37;
+$card-blue: #3d68b9;
+$text-light: #f0f0f0;
+$text-subtle: #a0a0a0;
+
+/* --- App Container --- */
+.app-container {
+  background-image: url("../../../assets/weather-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- App Header --- */
+.app-header {
+  margin-bottom: 20px;
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    .app-icon {
+      font-size: 1.8rem;
+      vertical-align: middle;
+    }
+  }
+}
+
+/* --- Weather Cards Container --- */
+.weather-card-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+
+/* --- Main Weather Card (Blue) --- */
+.weather-card {
+  background-color: $card-blue;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.weather-card-header {
+  display: flex;
+  align-items: center;
+  width: 450px;
+  gap: 20px;
+  .back-arrow {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .location-info {
+    text-align: center;
+    margin-left: 80px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      color: $text-light;
+    }
+    .date-time {
+      font-size: 0.9rem;
+      color: $text-subtle;
+    }
+  }
+}
+
+/* --- Weather Card Main Section --- */
+.weather-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* ensure children stretch vertically */
+  gap: 20px;
+
+  .weather-main-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2px;
+
+    .weather-icon-main {
+      font-size: 3rem;
+    }
+    .weather-description {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: $text-light;
+    }
+  }
+
+  /* --- Vertical Line --- */
+  .vertical-line {
+    width: 2px; 
+    background-color: white;
+    align-self: stretch; 
+    margin-left: 8px;
+  }
+
+  .weather-main-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+    margin-right: 40px;
+    .temp {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1;
+      color: $text-light;
+      margin-bottom: 30px;
+    }
+
+    .temp-range {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: 0.9rem;
+      color: $text-subtle;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+/* --- Details Card (Dark) --- */
+.weather-details-card {
+  background-color: $card-dark;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 460px;
+  gap: 20px;
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    p {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .label {
+      font-size: 0.9rem;
+      color: $text-subtle;
+    }
+    .value {
+      font-weight: 500;
+    }
+  }
+    .vertical-line-2 {
+        width: 1px; /* thin vertical line */
+        background-color: white; /* line color */
+        align-self: stretch; /* stretch to full height of parent */
+    }
+
+
+  .detail-item-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .wind-icon {
+      font-size: 2.5rem;
+    }
+    .wind-info {
+      font-size: 0.9rem;
+    }
+  }
+
+
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .weather-card {
+    padding: 20px;
+  }
+
+  .weather-details-card {
+    flex-direction: column;
+    text-align: center;
+
+    .detail-item {
+      text-align: center;
+      .label,
+      .value {
+        display: inline-block;
+      }
+    }
+  }
+
+  .weather-card-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .weather-main-left {
+    order: 1;
+  }
+
+  .vertical-line {
+    display: none; /* hide vertical line on small screens */
+  }
+
+  .weather-main-right {
+    order: 2;
+  }
+}

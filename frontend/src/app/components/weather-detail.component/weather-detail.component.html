@@ -1,0 +1,67 @@
+<div class="app-container">
+  <main class="weather-card-container">
+    <div class="weather-card">
+      <div class="weather-card-header">
+        <span class="back-arrow" (click)="goBack()">&#8592;</span>
+        <div class="location-info">
+          <h2>{{ weather.name }}, {{ weather.country }}</h2>
+          <span class="date-time">{{
+            getTimeAndDate(weather.dt, weather.timezone)
+          }}</span>
+        </div>
+      </div>
+
+      <div class="weather-card-main">
+        <div class="weather-main-left">
+          <img
+            [src]="
+              'http://openweathermap.org/img/wn/' + weather.icon + '@2x.png'
+            "
+            alt="{{ weather.description }}"
+          />
+          <p class="weather-description">{{ weather.description }}</p>
+        </div>
+
+        <div class="vertical-line"></div>
+
+        <div class="weather-main-right">
+          <span class="temp">{{ weather.temp }}&#8451;</span>
+          <div class="temp-range">
+            <p>Temp Min: {{ weather.temp_min }}&#8451;</p>
+            <p>Temp Max: {{ weather.temp_max }}&#8451;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weather-details-card">
+      <div class="detail-item">
+        <p class="label">Pressure:{{ weather.pressure }} hPa</p>
+        <p class="label">Humidity:{{ weather.humidity }}%</p>
+        <p class="label">Visibility:{{ weather.visibility }} km</p>
+      </div>
+      <div class="vertical-line-2"></div>
+      
+      <div class="detail-item-middle">
+        <span class="wind-icon">&#9992;</span>
+        <p class="wind-info">
+          {{ weather.wind_speed }} m/s {{ weather.wind_direction }} Degree
+        </p>
+      </div>
+
+      <div class="vertical-line-2"></div>
+      
+      <div class="detail-item">
+        <p class="label">Sunrise:{{ (weather.sunrise * 1000) | date:'hh:mm a':'UTC' }}</p>
+
+        <p class="label">Sunset:{{ (weather.sunset * 1000) | date:'hh:mm a':'UTC' }}</p>
+        
+      </div>
+    </div>
+  </main>
+
+<footer>
+  <p>&copy; 2025 Fidenz Technologies. All rights reserved.</p>
+</footer>
+
+</div>

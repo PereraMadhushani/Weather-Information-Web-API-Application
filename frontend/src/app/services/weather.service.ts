@@ -8,7 +8,7 @@ import { Observable, of, tap } from 'rxjs';
 export class WeatherService {
 private cache = new Map<number, { data: any, expiry: number }>();
 
-  private apiUrl = 'http://localhost:5000/api'; // Replace with your backend API URL
+  private apiUrl = 'http://localhost:5000/api'; 
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +25,7 @@ private cache = new Map<number, { data: any, expiry: number }>();
     }
 
     //Otherwise fetch from API and cache it
-    return this.http.get(`${this.apiUrl}/${cityCode}`, { headers }).pipe(
+    return this.http.get(`${this.apiUrl}/weather/${cityCode}`, { headers }).pipe(
       tap(data => {
         this.cache.set(cityCode, { data, expiry: now + 300000 }); // 5 min cache
       })
