@@ -1,28 +1,3 @@
-<!-- <div class="top-bar">
-  <h1>{{ title }}</h1>
-  <div class="auth">
-    <ng-container *ngIf="(isAuthenticated$ | async); else showLogin">
-      <button (click)="logOut()">Logout</button>
-    </ng-container>
-    <ng-template #showLogin>
-      <button (click)="login()">Login</button>
-    </ng-template>
-  </div>
-</div>
-
-<div class="container">
-  <div class="controls">
-    <label for="city">City</label>
-    <select id="city" [(ngModel)]="selectedCityId">
-      <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
-    </select>
-    <button (click)="loadWeatherData()" [disabled]="loading">Get Weather</button>
-  </div>
-
-  <div *ngIf="weatherData">
-  </div>
-
-</div> -->
 <div class="weather-app">
 <div class="header-container">
   <div class="logo-section">

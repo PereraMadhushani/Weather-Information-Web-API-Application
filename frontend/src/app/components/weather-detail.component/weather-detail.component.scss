@@ -6,6 +6,7 @@ $card-blue: #3d68b9;
 $text-light: #f0f0f0;
 $text-subtle: #a0a0a0;
 
+/* --- App Container --- */
 .app-container {
     display: flex;
     flex-direction: column;
@@ -30,17 +31,16 @@ $text-subtle: #a0a0a0;
 
 /* --- Weather Cards Container --- */
 .weather-card-container {
-    width: 100%;
+    width: 500px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    margin-left: 850px;
 }
 
 /* --- Main Weather Card (Blue) --- */
 .weather-card {
     background-color: $card-blue;
     padding: 30px;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -55,10 +55,12 @@ $text-subtle: #a0a0a0;
         cursor: pointer;
     }
     .location-info {
-        text-align: left;
+        text-align: center;
+        margin-left: 100px;
         h2 {
-            font-size: 1.7rem;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 400;
+            color: $text-light;
         }
         .date-time {
             font-size: 0.9rem;
@@ -67,37 +69,57 @@ $text-subtle: #a0a0a0;
     }
 }
 
+/* --- Weather Card Main Section --- */
 .weather-card-main {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: stretch; /* ensure children stretch vertically */
+    gap: 20px;
+
     .weather-main-left {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5px;
+        margin-left: 2px;
+
         .weather-icon-main {
             font-size: 3rem;
         }
         .weather-description {
             font-size: 1.2rem;
             font-weight: 500;
+            color: $text-light;
         }
     }
+
+    /* --- Vertical Line --- */
+    .vertical-line {
+        width: 2px;                /* thin vertical line */
+        background-color: white;    /* line color */
+        align-self: stretch;        /* stretch to full height of parent */
+    }
+
     .weather-main-right {
         display: flex;
-        align-items: flex-end;
-        gap: 15px;
-        .temperature {
-            font-size: 4rem;
-            font-weight: 600;
+        flex-direction: column;
+        justify-content: flex-end;
+margin-bottom: 50px;
+margin-right: 40px;
+        .temp {
+            font-size: 30px;
+            font-weight: 400;
             line-height: 1;
+            color: $text-light;
+            margin-bottom: 30px;
         }
+
         .temp-range {
             display: flex;
             flex-direction: column;
             text-align: left;
             font-size: 0.9rem;
+            color: $text-subtle;
+
             p {
                 margin: 0;
             }
@@ -109,41 +131,43 @@ $text-subtle: #a0a0a0;
 .weather-details-card {
     background-color: $card-dark;
     padding: 25px;
-    border-radius: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
     gap: 20px;
-}
 
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    p {
-        margin: 0;
-        line-height: 1.2;
-    }
-    .label {
-        font-size: 0.9rem;
-        color: $text-subtle;
-    }
-    .value {
-        font-weight: 500;
-    }
-}
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
 
-.detail-item-middle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    .wind-icon {
-        font-size: 2.5rem;
+        p {
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: $text-subtle;
+        }
+        .value {
+            font-weight: 500;
+        }
     }
-    .wind-info {
-        font-size: 0.9rem;
+
+    .detail-item-middle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .wind-icon {
+            font-size: 2.5rem;
+        }
+        .wind-info {
+            font-size: 0.9rem;
+        }
     }
 }
 
@@ -161,27 +185,36 @@ $text-subtle: #a0a0a0;
     .app-container {
         padding: 10px;
     }
+
     .weather-card {
         padding: 20px;
     }
+
     .weather-details-card {
         flex-direction: column;
         text-align: center;
+
         .detail-item {
             text-align: center;
-            .label { display: inline-block; }
-            .value { display: inline-block; }
+            .label, .value { display: inline-block; }
         }
     }
+
     .weather-card-main {
         flex-direction: column;
         align-items: center;
         text-align: center;
         gap: 20px;
     }
+
     .weather-main-left {
         order: 1;
     }
+
+    .vertical-line {
+        display: none; /* hide vertical line on small screens */
+    }
+
     .weather-main-right {
         order: 2;
     }

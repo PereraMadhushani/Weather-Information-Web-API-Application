@@ -16,11 +16,15 @@ export class WeatherListComponent implements OnInit {
   cityList: any[] = [];
   weathers: any[] = [];
   weatherList: any;
+  isAuthenticated$: any;
 
   constructor(
     private weatherService: WeatherService,
     private auth: AuthService
-  ) {}
+  ) {
+        this.isAuthenticated$ = this.auth.isAuthenticated$;
+
+  }
   ngOnInit(): void {
     this.cityList = List.List;
     this.weatherService.getAllCitiesWeather().subscribe((data) => {
@@ -31,4 +35,13 @@ export class WeatherListComponent implements OnInit {
       localStorage.setItem('token', token);
     });
   }
+  
+  login() {
+    this.auth.loginWithRedirect();
+  }
+
+  logOut() {
+    this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
+  }
+
 }
