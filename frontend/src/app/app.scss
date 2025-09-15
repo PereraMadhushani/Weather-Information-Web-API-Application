@@ -9,7 +9,7 @@ select { padding:6px; }
 }
 // .card { border-radius:10px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); padding:16px; margin-top: 12px; }
 .weather-app {
- background-image: url('../assets/weather-bg.png');
+background-image: url('../assets/weather-bg.png');
    background-size: cover;   /* make it cover the full container */
   background-position: center; /* center the image */
   background-repeat: no-repeat; /* prevent tiling */
@@ -27,28 +27,29 @@ select { padding:6px; }
 }
 
 /* Style for the app logo and title */
-.logo {
-    display: flex;
-    align-items: center;
-}
+.logo-section {
+  display: flex;
+  align-items: center;
+gap: 20px; /* Space between logo and title */
+  .logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-left: 500px; // safe spacing
+    margin-top: 10px;
+  }
 
-
-.logo-title {
-    font-size: 32px;
+  .logo-title {
+    font-size: 24px;
     font-weight: bold;
-    margin-left: 1400px;
-}
-
-.logo img {
-    height: 40px; /* Adjust as needed */
-    width: 40px;
+  }
 }
 
 /* Style for the search input and button */
 .search-section {
     display: flex;
     align-items: center;
-    margin-left: 1350px;    
+    margin-left: 510px;    
 }
 
 .search-input{

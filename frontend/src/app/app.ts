@@ -17,7 +17,8 @@ import { WeatherDetailComponent } from './components/weather-detail-component/we
     HttpClientModule,
     RouterModule,        // Needed for <router-outlet> and routing
     WeatherListComponent,
-    RouterOutlet
+    RouterOutlet,
+    WeatherDetailComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']

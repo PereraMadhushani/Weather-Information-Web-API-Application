@@ -1,61 +1,42 @@
 /* Overall Container */
-.weather-container {
-  /* This now controls the width of each card */
-  grid-template-columns: repeat(auto-fit, minmax(450px, 2fr));
-  background-color: #3f4c6b;
-  display: grid; /* Make sure this is present */
-  justify-content: center; /* Center the grid items if there's only one */
-}
-
 .weather-card {
   position: relative;
-  width: auto; /* Allow the card to be sized by the grid */
+  width: auto;
   border-radius: 20px;
-  padding: 20px;
-  margin: 15px;
   color: #fff;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
-  margin-left: 0; /* Remove the hard-coded margin */
+  overflow: hidden; /* Important for the rounded corners */
 }
 
 /* Top Section (Blue) */
 .top-section {
-  background-color: #2e86de;
+  background-color: #2e86de; /* Solid blue */
   padding: 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   z-index: 1;
+  height: 120px;
 }
 
 /* Cloud Backgrounds */
-.top-section::before,
 .top-section::after {
   content: "";
   position: absolute;
   left: 0;
+  bottom: 0;
   width: 100%;
   height: 50%;
   z-index: -1;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23277ed9" d="M100,50c0,27.6-22.4,50-50,50S0,77.6,0,50c0-11.2,3.7-21.7,10-30h10C26.3,27.8,37.3,37.6,50,37.6S73.7,27.8,80,20h10C96.3,28.3,100,38.8,100,50z"/></svg>');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  opacity: 0.2;
-}
-.top-section::before {
-  top: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg ...>');
-}
-.top-section::after {
-  bottom: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg ...>');
 }
 
-/* Close Button */
 .close-btn {
   position: absolute;
   top: 15px;
@@ -68,58 +49,79 @@
   font-weight: bold;
 }
 
+/* New Left and Right Columns */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 /* City and Date */
 .city-details {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-right: 20px;
 }
+
 .city-details h3 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  white-space: nowrap;
 }
+
 .city-details .date {
   font-size: 12px;
   opacity: 0.85;
 }
 
 /* Status Icon and Text */
-.status-icon {
+.status-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  flex-grow: 1;
+  align-items: flex-start;
 }
+
 .status-icon img {
   width: 50px;
   height: 50px;
   margin-bottom: 5px;
 }
-.status-icon p {
+
+.status-text {
   font-size: 14px;
   text-transform: capitalize;
-  margin: 0;
-}
+margin-top: 0px;}
 
 /* Temperature Section */
 .temperature {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 20px;
-}
-.temperature .temp {
-  font-size: 36px;
-  font-weight: bold;
-}
-.temperature .temp-minmax {
-  font-size: 12px;
+  gap: 5px;
+
+   .temp {
+  font-size: 40px;
+  font-weight: 600;
+  margin-right: 30px;
+  gap: 50px;
+  }
+.temp-minmax {
+  font-size: 15px;
   opacity: 0.9;
   text-align: right;
+  margin-right: 20px;
 }
+}
+
+
+
 .temperature .temp-minmax p {
   margin: 0;
 }
@@ -130,15 +132,16 @@
   color: #ccc;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Change back to space-between to match your image */
   align-items: center;
 }
 
 .detail-group {
   font-size: 12px;
   line-height: 1.6;
-  text-align: center;
+  text-align: left;
   flex: 1;
+  font-weight: 700;
 }
 
 .centered-detail {
@@ -146,14 +149,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .centered-detail i {
   font-size: 18px;
   margin-bottom: 3px;
-}
-
-/* Hover Effect */
-.weather-card:hover {
-  transform: translateY(-5px);
 }
