@@ -18,6 +18,6 @@ const jwtCheck = expressjwt({
 });
 
 router.get('/cities', getCities);
-router.get('/weather/:city', jwtCheck, getCityWeather);
+router.get('/weather/:cityCode', jwtCheck, getCityWeather);
 
 module.exports = router;    

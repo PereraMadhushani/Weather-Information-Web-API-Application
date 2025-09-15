@@ -3,6 +3,7 @@ import { WeatherService } from '../../services/weather.service';
 import List  from '../../../data/cities.json';
 import { WeatherCardComponent } from '../weather-card-component/weather-card-component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-weather-list-component',
@@ -16,7 +17,7 @@ export class WeatherListComponent implements OnInit {
   weathers:any[]=[];  
 weatherList: any;
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService, private auth: AuthService) { }
   ngOnInit(): void {
     this.cityList = List.List;
     this.weatherService.getAllCitiesWeather().subscribe(data => {
@@ -25,7 +26,11 @@ weatherList: any;
       console.log("city weather data",data);
       this.weathers = data.cities;
     });
-  }
-  
+
+  this.auth.getAccessTokenSilently().subscribe(token => {
+      console.log('My token:', token); // token from Auth0
+      localStorage.setItem('token', token);
+  });
+}
 
 }

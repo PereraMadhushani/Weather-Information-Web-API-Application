@@ -1,5 +1,5 @@
 <div class="weather-container">
-  <div class="weather-card" [ngClass]="weather.Status.toLowerCase()" (click)="goToDetailsPage(weather.CityName)">
+  <div class="weather-card" [ngClass]="weather.Status.toLowerCase()" (click)="viewDetails(weather.CityCode)">
     <div class="top-section">
       <button class="close-btn" (click)="$event.stopPropagation()">&times;</button>
       <div class="city-details">

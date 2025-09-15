@@ -1,29 +1,42 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-weather-detail-component',
-  imports: [CommonModule],
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './weather-detail-component.html',
-  styleUrl: './weather-detail-component.scss'
+  styleUrls: ['./weather-detail-component.scss']  // ✅ fixed plural
 })
-export class WeatherDetailComponent  implements OnInit {
-  weather: any; // Define the type based on your weather data structure
+export class WeatherDetailComponent implements OnInit {
+  weather: any;
+  cityCode: string | null = null;
 
-  constructor(private route: ActivatedRoute, private weatherService: WeatherService) { 
-    const cityId = this.route.snapshot.paramMap.get('id');
-  console.log(cityId);
+  constructor(
+    private route: ActivatedRoute,
+    private weatherService: WeatherService
+  ) {}
 
-  }
   ngOnInit(): void {
-    const cityId = Number(this.route.snapshot.paramMap.get('id'));
-    this.weatherService.getWeatherData(cityId).subscribe(data => {
-      this.weather = data;
-    });
-    // Fetch weather details based on the city ID from the route
+    this.cityCode = this.route.snapshot.paramMap.get('cityCode');
+    console.log("City Code from route:", this.cityCode);
+
+    if (this.cityCode) {
+      this.getWeatherDetails(Number(this.cityCode));
+    }
   }
 
+  getWeatherDetails(cityCode: number) {
+    this.weatherService.getWeatherData(cityCode).subscribe({
+      next: (data) => {
+        console.log("Weather data:", data);
+        this.weather = data;
+      },
+      error: (err) => {
+        console.error("Error fetching weather data:", err);
+      }
+    });
+  }
 }

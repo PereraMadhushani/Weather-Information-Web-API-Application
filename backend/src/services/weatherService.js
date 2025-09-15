@@ -9,10 +9,10 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 /**
  * Fetches detailed weather data for a given city ID.
- * @param {string} cityId The unique ID of the city.
+ * @param {string} cityCode The unique ID of the city.
  * @returns {Promise<Object>} A promise that resolves to the weather data.
  */
-const fetchWeather = async (cityId) => {
+const fetchWeather = async (cityCode) => {
   // Check if the API key is available
   if (!OPENWEATHER_API_KEY) {
     throw new Error('API key is not defined. Please set the OPENWEATHER_API_KEY environment variable.');
@@ -21,7 +21,7 @@ const fetchWeather = async (cityId) => {
   try {
     const response = await axios.get(BASE_URL, {
       params: {
-        id: cityId,
+        id: cityCode,
         appid: OPENWEATHER_API_KEY,
         units: 'metric',
       },

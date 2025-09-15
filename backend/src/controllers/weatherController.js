@@ -53,12 +53,11 @@ const getAllCitiesWeatherDetails = async (req, res) => {
         WindDirection: detailed.wind_deg,
         Visibility: detailed.visibility,
         Sunrise: detailed.sunrise,
-        Sunset: detailed.sunset,
-        // Assuming your API response has a 'description' field
-        Status: detailed.description,
+        Sunset: detailed.sunset,        Status: detailed.description,
         Icon: detailed.icon?? null, // Assuming your API response has an 'icon' field 
         Timezone: detailed.timezone,
-        Dt: detailed.dt
+        Dt: detailed.dt,
+        Id: detailed.id
       };
     });
 
@@ -74,26 +73,33 @@ const getCities = (req, res) => {
 };
 
 const getCityWeather = async (req, res) => {
-  const {cityId,mode} = req.query;
-  if(!cityId)
-    return res.status(400).json({error: 'City ID is required'});
-    try {
-    const data = await fetchWeather(cityId);
+    const { cityCode } = req.params;
+    const { mode } = req.query;
 
-    if (mode === 'basic') {
-      return res.json({
-        id: data.id,
-        name: data.name,
-        country: data.country,
-        description: data.description,
-        temp: data.temp
-      });
-    } 
-    return res.json(data);
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    res.status(500).json({error: 'Failed to fetch weather data'});
-  }
+    if (!cityCode) {
+        return res.status(400).json({ error: 'City Code is required' });
+    }
+
+    try {
+        // Trim the cityCode to remove any extra whitespace or newline characters
+        const trimmedCityCode = cityCode.trim();
+
+        const data = await fetchWeather(trimmedCityCode);
+
+        if (mode === 'basic') {
+            return res.json({
+                id: data.id,
+                name: data.name,
+                country: data.country,
+                description: data.description,
+                temp: data.temp
+            });
+        }
+        return res.json(data);
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+        res.status(500).json({ error: 'Failed to fetch weather data' });
+    }
 };
 
 module.exports = {
