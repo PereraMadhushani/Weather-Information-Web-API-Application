@@ -55,8 +55,3 @@ Password: Pass#fidenz
    Ensure both backend and frontend are running simultaneously.
    Use valid API keys and Auth0 credentials to avoid authentication issues.
    Make sure cities.json is correctly placed in the backend folder.
-
-
-I can also **add badges for Node.js, Angular, and API status** to make it look professional on GitHub if you want.  
-
-Do you want me to do that?
